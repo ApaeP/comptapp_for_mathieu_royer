@@ -1,0 +1,8 @@
+<h3 class="text-center lg:text-left pt-6 pb-4">
+  <%= "#{by_quarter.first.ordinalize} Trimestre" %> -
+  <span class="text-xs"><%= money_sum(by_quarter.last) %></span>
+</h3>
+
+<div class="overflow-x-auto pl-1 md:pl-2 lg:pl-6 pb-36">
+  <%= render partial: 'invoices/by_month', collection: by_quarter.last.sort_by(&:month).reverse.group_by(&:month) %>
+</div>

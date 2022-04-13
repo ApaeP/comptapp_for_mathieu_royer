@@ -1,0 +1,75 @@
+<nav class="bg-white border-gray-300 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+  <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <a href="<%= root_path %>" class="flex items-center">
+      <%= image_tag "logo_alpha0.png", alt: "logo", class: "mr-3 h-8 sm:h-9" %>
+    </a>
+    <div class="flex items-center md:order-2">
+      <div data-controller="dropdown">
+        <% if user_signed_in? %>
+          <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                  data-action="dropdown#toggle click@window->dropdown#hide">
+              <%= image_tag current_user.safe_avatar_url, alt: "#{current_user.full_name}'s avatar", class: "w-8 h-8 rounded-full" %>
+          </button>
+        <% else %>
+          <%= link_to "Login", login_path, class: 'btn btn-gray' %>
+        <% end %>
+
+        <div class="hidden z-50 my-4 text-base list-none bg-white rounded
+                    divide-y divide-gray-100 dark:bg-gray-700 dark:divide-gray-600
+                    transition absolute mt-2 w-56
+                    shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+             style="transform: translateX(calc(-100% + 2rem));"
+             data-dropdown-target="menu"
+             data-transition-enter-from="opacity-0 scale-95" data-transition-enter-to="opacity-100 scale-100" data-transition-leave-from="opacity-100 scale-100" data-transition-leave-to="opacity-0 scale-95">
+          <% if user_signed_in? %>
+              <div class="py-3 px-4">
+                <span class="block text-sm text-gray-500 dark:text-gray-400"><%= current_user.full_name %></span>
+                <%= link_to edit_user_registration_path, class: "block" do  %>
+                  <span class="block text-sm font-medium truncate text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-white">Mes informations</span>
+                <% end %>
+              </div>
+            <ul class="py-1">
+              <li>
+                <%= link_to 'Clients', clients_path,
+                    class: 'block transition-all py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white' %>
+              </li>
+              <li>
+                <%= link_to 'Factures', invoices_path,
+                    class: 'block transition-all py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white' %>
+              </li>
+              <li>
+                <%= link_to 'Dashboard', dashboard_path,
+                    class: 'block transition-all py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white' %>
+              </li>
+              <li>
+                <%= link_to 'Nouvelle facture', new_invoice_path,
+                    class: 'block transition-all py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white' %>
+              </li>
+              <li>
+                <%= button_to "Déconnexion", destroy_user_session_path, method: :delete,
+                    class: 'w-full block transition-all py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white' %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+    <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
+      <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+        <li>
+          <%= link_to 'Clients', clients_path, class: 'block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' %>
+        </li>
+        <li>
+          <%= link_to 'Factures', invoices_path, class: 'block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' %>
+        </li>
+        <li>
+          <%= link_to 'Dashboard', dashboard_path, class: 'block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' %>
+        </li>
+        <li>
+          <%= link_to 'Nouvelle facture', new_invoice_path, class: 'block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

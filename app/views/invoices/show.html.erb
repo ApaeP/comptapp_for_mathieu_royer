@@ -1,0 +1,118 @@
+<h2 class="page-title"><%= @invoice.name %></h2>
+<%= link_to 'Télécharger',
+            pdf_invoice_path(@invoice),
+            target: '_blank',
+            class: "btn btn-gray mx-auto block w-56 text-center mb-12"
+%>
+<section class="a4 mx-auto bg-white text-gray-900 overflow-hidden">
+
+  <div class="a4-bounds">
+    <%= image_tag "logo_alpha0.png", alt: "logo", class: 'z-50 absolute top-0 left-0 m-12 h-24' %>
+    <div style="background-color: #<%= Invoice::COLORS.sample %>;"
+         class="z-40 absolute top-0 left-0 h-96 w-full
+                -translate-x-[40%] -translate-y-[55%] -rotate-45">
+    </div>
+
+    <div class="flex">
+      <div class="w-1/2 text-xxs">
+        <p class="text-xs"><%= @user.full_name %></p>
+        <% @user.business_address.lines.each do |l| %>
+          <p><%= l %></p>
+        <% end %>
+        <p><%= @user.business_country %></p>
+        <p><%= @user.siret %></p>
+      </div>
+      <div class="w-1/2 text-xxs">
+        <p class="text-xs"><%= @client.name %></p>
+        <% @client.address.lines.each do |l| %>
+          <p><%= l %></p>
+        <% end %>
+        <p><%= @client.country %></p>
+        <% if @client.siret.present? %>
+          <p><%= @client.siret %></p>
+        <% end %>
+        <% if @client.rcs.present? %>
+          <p><%= @client.rcs %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <hr class="border-gray-300 mx-auto my-12 w-4/5">
+
+    <div class="a4-items text-xxs">
+      <div class="flex justify-between mb-2">
+        <p><%= @invoice.name %></p>
+        <p><%= l(@invoice.created_at, format: '%d %B %Y') %></p>
+      </div>
+      <p><%= @invoice.description %></p>
+      <table class="items mt-2 w-full">
+        <thead class="a4-items-head">
+          <tr class="text-xs text-left border-y border-gray-300">
+            <th>Element</th>
+            <th>Quantité</th>
+            <th>Unité HT</th>
+            <th>TVA</th>
+            <th>Total HT</th>
+          </tr>
+        </thead>
+        <tbody class="a4-items-body">
+          <% @invoice.invoice_items.each do |e| %>
+            <tr class="text-xxs">
+              <td><%= e.name %></td>
+              <td><%= e.quantity %></td>
+              <td><%= e.unit_price %></td>
+              <td><%= e.vat_rate %> %</td>
+              <td><%= e.amount_without_vat %> €</td>
+            </tr>
+          <% end %>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Sous-total HT</td>
+            <td><%= @invoice.amount_without_vat %> €</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TVA</td>
+            <td><%= @invoice.vat_amount %> €</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TOTAL TTC</td>
+            <td><%= @invoice.amount %> €</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="3"><%= "TVA non applicable, article 293B du CGI" unless @invoice.subject_to_vat %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="border-gray-300 mx-auto my-12 w-4/5">
+
+    <div >
+      <table class="a4-invoice-payment-info">
+        <tbody>
+          <tr>
+            <td>IBAN</td>
+            <td><%= @user.iban %></td>
+          </tr>
+          <tr>
+            <td>BIC</td>
+            <td><%= @user.bic %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</section>
+<div class="mb-24"></div>

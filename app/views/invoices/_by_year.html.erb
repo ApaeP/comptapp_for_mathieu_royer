@@ -1,0 +1,7 @@
+<h2 class="text-xl text-center">
+  <%= "Année #{by_year.first}" %> -
+  <span class="text-xs"><%= money_sum(by_year.last) %></span>
+</h2>
+<div class="bg-white dark:bg-gray-900 md:px-10 pb-5 my-8 px-2 md:px-4 lg:px-6">
+  <%= render partial: 'invoices/by_quarter', collection: by_year.last.sort_by(&:quarter).reverse.group_by(&:quarter) %>
+</div>

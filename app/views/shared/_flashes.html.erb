@@ -1,0 +1,10 @@
+<% if flash.any? %>
+  <div class="fixed top-14 left-1/4 w-1/2 z-50 text-gray-700">
+    <% flash.each do |type, msg| %>
+      <div class="transition-all duration-1000" data-controller="flash"
+           data-action="mouseover->flash#stopTimeout mouseleave->flash#startTimeOut">
+        <%= render "shared/flashes/#{type}", msg: msg.html_safe %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

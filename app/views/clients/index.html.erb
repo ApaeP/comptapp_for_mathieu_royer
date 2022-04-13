@@ -1,0 +1,7 @@
+<h1 class="text-center text-3xl my-8">Clients</h1>
+
+<%= link_to "Nouveau client", new_client_path, class: 'btn btn-gray mx-auto block text-center w-56' %>
+
+<div aria-label="group of cards" tabindex="0" class="focus:outline-none py-8 w-full flex flex-wrap justify-center">
+  <%= render @clients %>
+</div>

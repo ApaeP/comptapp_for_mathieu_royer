@@ -1,0 +1,108 @@
+<tr tabindex="0" class="focus:outline-none text-sm leading-none text-gray-600 dark:text-gray-200 h-16 group">
+
+  <td class="">
+    <%= link_to invoice_path(invoice), title: 'Voir' do %>
+      <div class="flex items-center">
+        <div class="w-10 h-10 bg-gray-700 rounded-sm flex items-center justify-center">
+          <p class="text-xs font-bold leading-3 text-white"><%= invoice.client.initials %></p>
+        </div>
+        <div class="pl-2">
+          <p class="hidden lg:block text-sm font-medium leading-none text-gray-800 dark:text-white"><%= invoice.client.name %></p>
+          <p class="block lg:hidden text-xs font-medium leading-none text-gray-800 dark:text-white"><%= invoice.client.name.truncate(11, omission: '...') %></p>
+          <p class="text-[0.6rem] leading-1 lg:text-xs leading-3 text-gray-600 dark:text-gray-200 mt-1 lg:mt-2"><%= l(invoice.created_at, format: '%d %B %Y') %></p>
+          <p class="text-[0.6rem] leading-1 lg:text-xs leading-3 text-gray-600 dark:text-gray-200 mt-1 lg:mt-2"><%= invoice.number %></p>
+        </div>
+      </div>
+    <% end %>
+  </td>
+
+  <td class="text-xs hidden" title="<%= invoice.description %>">
+    <p><%= invoice.short_description %></p>
+  </td>
+
+  <td class="hidden lg:block">
+    <p class="text-xs"><%= invoice.number %></p>
+  </td>
+
+  <td>
+    <% if invoice.paid? %>
+      <p class="hidden lg:block text-green-400 text-center">Payée le <br> <%= l(invoice.payment_date, format: '%d %B %Y') %></p>
+      <p class="block lg:hidden text-green-400 text-center"><i class="fa-solid fa-circle-check"></i></p>
+    <% else %>
+      <p class="hidden lg:block text-red-400 text-center">Non payée</p>
+      <p class="block lg:hidden text-red-400 text-center"><i class="fa-solid fa-circle-xmark"></i></p>
+    <% end %>
+  </td>
+
+  <td>
+    <p class="text-right"><%= human_price(invoice.amount) %></p>
+  </td>
+
+  <td class="lg:pl-10 text-right">
+    <div data-controller="dropdown" class="relative inline-block text-left">
+      <div>
+        <button type="button"
+                data-action="dropdown#toggle click@window->dropdown#hide"
+                class="inline-flex justify-center w-full z-40 rounded-md border border-gray-300 shadow-sm px-4 py-2
+                       text-sm font-medium hover:bg-gray-700 focus:outline-none focus:ring-2 transition-all
+                       focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+          <i class="fa-solid fa-ellipsis"></i>
+        </button>
+      </div>
+
+      <div data-dropdown-target="menu"
+           class="hidden transition transform origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+           data-transition-enter-from="opacity-0 scale-95" data-transition-enter-to="opacity-100 scale-100" data-transition-leave-from="opacity-100 scale-100" data-transition-leave-to="opacity-0 scale-95">
+        <div class="py-1">
+          <%= link_to 'Voir', invoice_path(invoice),
+                      class: "w-full text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-left",
+                      data: {
+                        action: 'dropdown#toggle'
+                      }
+          %>
+          <%= link_to 'Télécharger',
+                      pdf_invoice_path(invoice),
+                      target: '_blank',
+                      class: "w-full text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-left",
+                      data: {
+                        action: 'dropdown#toggle'
+                      }
+          %>
+          <% if invoice.paid? %>
+            <%= confirmable_link_to("Marquer non payée",
+                                    mark_as_unpaid_invoice_path(invoice),
+                                    data: {
+                                      action: 'dropdown#toggle'
+                                    },
+                                    message: "Marquer la facture #{invoice.number} comme impayée?",
+                                    klass: "w-full text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-left"
+            ) %>
+          <% else %>
+            <%= confirmable_link_to("Marquer payée",
+                                    mark_as_paid_invoice_path(invoice),
+                                    data: {
+                                      action: 'dropdown#toggle'
+                                    },
+                                    message: "Marquer la facture #{invoice.number} comme payée?",
+                                    klass: "w-full text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-left"
+            ) %>
+          <% end %>
+          <%= button_to 'Supprimer',
+                      invoice_path(invoice),
+                      method: :delete,
+                      class: "w-full text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm text-left",
+                      data: {
+                        action: 'dropdown#toggle'
+                      },
+                      form: {
+                        data: {
+                          turbo_confirm: "Are you sure?"
+                        }
+                      }
+          %>
+        </div>
+      </div>
+    </div>
+  </td>
+
+</tr>

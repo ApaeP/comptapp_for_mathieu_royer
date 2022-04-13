@@ -1,0 +1,49 @@
+<tr class="nested-fields">
+  <td>
+    <%= f.input :name,
+                label: false,
+                input_html: {
+                  list: 'name',
+                  class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                },
+                wrapper_html: {
+                  class: 'w-full'
+                } %>
+    <datalist id="name">
+      <% @invoice_item_names.each do |name| %>
+        <option value="<%= name %>"><%= name %></option>
+      <% end %>
+    </datalist>
+  </td>
+  <td class="flex items-center px-2 justify-center" data-controller="integer-input">
+    <%= icon('fa-solid', 'circle-minus', class: 'text-lg cursor-pointer', data: { action: 'click->integer-input#decrement' }) %>
+    <%= f.input :quantity,
+                label: false,
+                as: :string,
+                input_html: {
+                  value: 1,
+                  data: {
+                    'integer-input-target' => 'input'
+                  },
+                  class: 'w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                },
+                wrapper_html: {
+                  class: 'w-2/3 px-1'
+                } %>
+    <%= icon('fa-solid', 'circle-plus', class: 'text-lg cursor-pointer', data: { action: 'click->integer-input#increment' }) %>
+  </td>
+  <td>
+    <%= f.input :unit_price,
+                label: false,
+                as: :string,
+                input_html: {
+                  class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                },
+                wrapper_html: {
+                  class: 'w-full'
+                } %>
+  </td>
+  <td>
+    <%= link_to_remove_association '<i class="fa-solid fa-xmark text-lg cursor-pointer pl-4"></i>'.html_safe, f %>
+  </td>
+</tr>

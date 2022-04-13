@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: invoices
+#
+#  id            :bigint           not null, primary key
+#  user_id       :bigint           not null
+#  emission_date :datetime
+#  payment_date  :datetime
+#  number        :integer
+#  description   :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  user: one
+  payment_date: 2022-03-27 19:13:36
+  number: 1
+  description: MyString
+
+two:
+  user: two
+  payment_date: 2022-03-27 19:13:36
+  number: 1
+  description: MyString

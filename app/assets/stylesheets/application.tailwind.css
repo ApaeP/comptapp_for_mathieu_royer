@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --a4-height: 2970px;
+  --a4-width: 2100px;
+}
+
+@layer components {
+  .btn {
+    @apply py-2 px-4 font-semibold rounded cursor-pointer transition-all;
+  }
+
+  .btn-gray {
+    @apply bg-gray-700 hover:bg-gray-600;
+  }
+
+  .btn-green {
+    @apply bg-green-900 hover:bg-green-800;
+  }
+
+  .btn-red {
+    @apply bg-red-900 hover:bg-red-800;
+  }
+
+  .page-title {
+    @apply text-2xl text-center mt-12 mb-8;
+  }
+
+/*A4 INVOICE*/
+  .a4 {
+    @apply relative;
+    max-height: calc(var(--a4-height) / 3);
+    max-width: calc(var(--a4-width) / 3);
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .a4-bounds {
+    @apply pt-56 pr-16 pb-24 pl-44 h-full;
+  }
+
+  .a4-invoice-payment-info {
+    @apply text-xxs;
+  }
+
+  .a4-invoice-payment-info td:first-child {
+    @apply font-extralight;
+  }
+
+  .a4-invoice-payment-info td:last-child {
+    @apply pl-1 text-right;
+  }
+
+  .a4-items-head th {
+    @apply font-normal leading-6;
+  }
+
+  .a4-items-head th:last-child {
+    @apply text-right font-semibold;
+  }
+
+  .a4-items-body td:last-child {
+    @apply text-right;
+  }
+
+  .a4-items-body tr:nth-last-child(4) {
+    @apply mt-4 font-extralight text-xs;
+  }
+
+  .a4-items-body tr:nth-last-child(4) td {
+    @apply pt-3;
+  }
+
+  .a4-items-body tr:nth-last-child(3) {
+    @apply font-extralight text-xs;
+  }
+
+  .a4-items-body tr:nth-last-child(2) {
+    @apply text-sm;
+  }
+
+  .a4-items-body tr:nth-last-child(2) td {
+    @apply pt-3;
+  }
+
+  .a4-items-body tr:nth-last-child(1) {
+    @apply text-xxxs;
+  }
+
+  .a4-items-body tr:nth-last-child(1) td {
+    @apply pt-0;
+  }
+
+/*A4 INVOICE END*/
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+<h2 class="page-title">Connexion</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.input :email,
+      wrapper_html: { class: 'my-6' },
+      label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+      input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+    %>
+  </div>
+
+  <div class="field">
+    <%= f.input :password,
+      autocomplete: "current-password",
+      wrapper_html: { class: 'my-6' },
+      label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+      input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+    %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.input :remember_me,
+        as: :boolean,
+        autocomplete: "current-password",
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'form-checkbox rounded h-5 w-5 text-blue-200 mr-2' }
+      %>
+    </div>
+  <% end %>
+
+  <div class="actions flex">
+    <%= f.submit "Se connecter", class: 'btn btn-gray px-12' %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/omniauth_links" %>
+
+<%= render "devise/shared/links" %>

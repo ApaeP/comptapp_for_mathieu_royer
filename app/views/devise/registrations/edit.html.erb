@@ -1,0 +1,94 @@
+<h2 class="page-title">Mes Informations</h2>
+
+<div class="form mx-auto md:px-40 mt-10 mb-24" style="min-width: 350px;"
+     data-controller="user-edit">
+  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), method: :put, data: { controller: 'display-file' } do |f| %>
+    <div class="p-2 rounded-xl my-4 border-2 border-komin-gray">
+      <%= f.input :email,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <div class="flex justify-around my-5">
+        <%= f.input :first_name,
+          wrapper_html: { class: 'my-6 w-4/12' },
+          label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+          input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+        %>
+        <%= f.input :last_name,
+          wrapper_html: { class: 'my-6 w-4/12' },
+          label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+          input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+        %>
+        <%= f.input :github_name,
+          disabled: true,
+          wrapper_html: { class: 'my-6 w-4/12' },
+          label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+          input_html: { class: 'bg-gray-100 border border-gray-300 text-gray-800 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 cursor-not-allowed' }
+        %>
+      </div>
+      <%= f.input :business_name,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <%= f.input :business_address,
+        as: :text,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <%= f.input :business_country,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <%= f.input :siret,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <%= f.input :iban,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <%= f.input :bic,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <%= f.input :logo,
+        as: :file,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+    </div>
+    <div class="p-2 rounded-xl border-2 border-komin-gray my-4">
+      <p class="text-xl"><%= t('user.edit_password') %></p>
+      <%= f.input :current_password,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <%= f.input :password,
+        hint: "#{@minimum_password_length} characters minimum",
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+      <%= f.input :password_confirmation,
+        wrapper_html: { class: 'my-6' },
+        label_html: { class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300' },
+        input_html: { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' }
+      %>
+    </div>
+    <div class="actions flex justify-between px-4">
+      <%= link_to t('user.back'), :back, class: 'btn btn-gray' %>
+      <%= f.submit "Save changes", class: "btn btn-gray" %>
+    </div>
+  <% end %>
+</div>
+<!-- <p><%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'komin-button-outline-red' %></p> -->
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Comptapp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="<%= image_path 'icons/ms-icon-144x144.png' %>">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'icons/apple-icon-57x57.png' %>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<%= image_path 'icons/apple-icon-60x60.png' %>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<%= image_path 'icons/apple-icon-72x72.png' %>">
+    <link rel="apple-touch-icon" sizes="76x76" href="<%= image_path 'icons/apple-icon-76x76.png' %>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<%= image_path 'icons/apple-icon-114x114.png' %>">
+    <link rel="apple-touch-icon" sizes="120x120" href="<%= image_path 'icons/apple-icon-120x120.png' %>">
+    <link rel="apple-touch-icon" sizes="144x144" href="<%= image_path 'icons/apple-icon-144x144.png' %>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<%= image_path 'icons/apple-icon-152x152.png' %>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= image_path 'icons/apple-icon-180x180.png' %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= image_path 'icons/favicon-32x32.png' %>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<%= image_path 'icons/favicon-96x96.png' %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= image_path 'icons/favicon-16x16.png' %>">
+
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <!-- PWA -->
+
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200">
+    <%= render 'shared/navbar' %>
+    <main class="<%= 'container mx-auto' unless params[:controller] == 'pages' && params[:action] == 'home' %>">
+      <%= yield %>
+    </main>
+    <%= render 'shared/flashes' %>
+  </body>
+</html>

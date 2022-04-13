@@ -1,0 +1,6 @@
+<%= turbo_stream.prepend "clients" do %>
+  <%= render "client", client: @client %>
+<% end %>
+<%= turbo_stream.replace "#{dom_id(Client.new)}_form" do %>
+  <%= render "form", client: Client.new %>
+<% end %>
